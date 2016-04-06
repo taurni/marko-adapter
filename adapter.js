@@ -23,7 +23,7 @@ moduel.exports = function(source, config){
             if (!views === null) loadViews(source);
             debugger;
             //return Promise.resolve(Mustache.render(str, context, views));
-            return Promise.resolve);
+            return Promise.resolve();
         }
     }
 
