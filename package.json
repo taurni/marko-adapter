@@ -1,0 +1,14 @@
+{
+  "name": "@frctl/marko-adapter",
+  "version": "0.1.0",
+  "description": "Use Marko template with Fractal",
+  "main": "adapder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tauri Nikkari",
+  "license": "MIT",
+  "dependencies": {
+    "marko": "^2.10.0"
+  }
+}
