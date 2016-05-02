@@ -1,6 +1,6 @@
 'use strict';
 const Marko = require('marko');
-moduel.exports = function(source, config){
+module.exports = function(source, config){
 
     let views = null;
 
@@ -18,7 +18,7 @@ moduel.exports = function(source, config){
     source.on('changed', loadViews);
 
     return {
-        engine: MArko,
+        engine: Marko,
         render: function(path, str, context, meta){
             if (!views === null) loadViews(source);
             debugger;

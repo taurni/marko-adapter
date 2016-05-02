@@ -1,5 +1,5 @@
 {
-  "name": "@frctl/marko-adapter",
+  "name": "marko-adapter",
   "version": "0.1.0",
   "description": "Use Marko template with Fractal",
   "main": "adapder.js",
