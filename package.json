@@ -2,7 +2,7 @@
   "name": "marko-adapter",
   "version": "0.1.1",
   "description": "Use Marko template with Fractal",
-  "main": "adapder.js",
+  "main": "adapter.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/taurni/marko-adapter"
