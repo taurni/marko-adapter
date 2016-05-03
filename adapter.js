@@ -1,27 +1,20 @@
 'use strict';
 const Marko = require('marko');
 module.exports = function(source, config){
-    let views = null;
-
-    function loadViews(source) {
-        // console.log("MARKO:loadView",source);
-        views = {};
-
-        for (let item of source.flattenDeep()) {
-            views['@' + item.handle] = item.content;
-            if (item.alias) {
-                views['@' + item.alias] = item.content;
-            }
-        }
-    }
+    require('marko/hot-reload').enable();
+    require('marko/compiler').defaultOptions.writeToDisk = false;
 
     source.on('loaded', function(){
         // console.log('M:loaded')
-        loadViews
+
     });
-    source.on('changed', function(){
-        // console.log('M:changed')
-        loadViews
+    source.on('changed', function(x){
+        //console.log('M:changed')
+        if(x.event == 'change' && x.type == 'view'){
+            console.log('M:changed',x.path)
+            require('marko/hot-reload').handleFileModified(x.path);
+        }
+
     });
 
     return {
@@ -33,10 +26,15 @@ module.exports = function(source, config){
              * context - data
              * meta - ?undefined?
              */
-            if (!views) loadViews(source);
-
-            //return Promise.resolve(Mustache.render(str, context, views));
-            return Promise.resolve(Marko.load(path, str).renderSync(context));
+            // console.log('Marko:render',path);
+            const template = Marko.load(path, str, {writeToDisk: false});
+            return new Promise(function(resolve,reject){
+                require('marko/hot-reload').handleFileModified(path);
+                template.render(context, function(err, html){
+                    if(err !== null) return reject(err);
+                    resolve(html);
+                });
+            });
         }
     }
 
