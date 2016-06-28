@@ -1,5 +1,6 @@
 'use strict';
 const Marko = require('marko');
+require('marko/node-require').install();
 module.exports = function(source, config){
     require('marko/hot-reload').enable();
     require('marko/compiler').defaultOptions.writeToDisk = false;
